@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "762128163426",
+    "project_id": "budgetbro-ce796",
+    "storage_bucket": "budgetbro-ce796.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762128163426:android:f4ab64716235eca0c1273b",
+        "android_client_info": {
+          "package_name": "com.example.budgetbro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762128163426-nmer61fljcn180kqu9p0a2vijnaca3vp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOetSbQ5idQURXgVfDFzwosSdDlRbYKmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762128163426-nmer61fljcn180kqu9p0a2vijnaca3vp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
