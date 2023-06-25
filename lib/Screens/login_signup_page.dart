@@ -42,7 +42,7 @@ class Login extends StatelessWidget {
                         enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.white),
                             borderRadius: BorderRadius.circular(10)),
-                        hintText: 'Email / Username',
+                        hintText: 'Email',
                         hintStyle: GoogleFonts.chakraPetch()),
                   ),
                 ),

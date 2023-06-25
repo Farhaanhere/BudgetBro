@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:managment/widgets/bottomnavigationbar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ScreenRegisterPage extends StatelessWidget {
   ScreenRegisterPage({super.key});
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmpassController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _mobilenoController = TextEditingController();
 
   @override
@@ -67,8 +68,7 @@ class ScreenRegisterPage extends StatelessWidget {
                   padding:
                       const EdgeInsets.only(left: 43.0, right: 43.0, top: 20),
                   child: TextField(
-                    controller: _confirmpassController,
-                    obscureText: true,
+                    controller: _nameController,
                     decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -76,7 +76,7 @@ class ScreenRegisterPage extends StatelessWidget {
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                           borderRadius: BorderRadius.circular(10)),
-                      hintText: 'Confirm Password',
+                      hintText: 'Name',
                       hintStyle: GoogleFonts.chakraPetch(),
                     ),
                   ),
@@ -86,7 +86,6 @@ class ScreenRegisterPage extends StatelessWidget {
                       const EdgeInsets.only(left: 43.0, right: 43.0, top: 20),
                   child: TextField(
                     controller: _mobilenoController,
-                    obscureText: true,
                     decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
@@ -109,6 +108,11 @@ class ScreenRegisterPage extends StatelessWidget {
                             email: _emailController.text.trim(),
                             password: _passwordController.text.trim())
                         .then((value) {});
+                    addUserDets(
+                        _emailController.text.trim(),
+                        _mobilenoController.text.trim(),
+                        _nameController.text.trim(),
+                        _passwordController.text.trim());
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (ctx) => Bottom()));
                   },
@@ -157,5 +161,15 @@ class ScreenRegisterPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future addUserDets(
+      String name, String email, String password, String mobileno) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'Email': name,
+      'MobileNo': email,
+      'Name': mobileno,
+      'Password': password,
+    });
   }
 }
