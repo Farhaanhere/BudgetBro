@@ -1,10 +1,31 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:managment/data/listdata.dart';
 import 'package:managment/data/model/add_date.dart';
 import 'package:managment/data/utlity.dart';
+import 'package:managment/data/model/user_model.dart';
 
+String name = 'a';
+
+/*fetch() async {
+  final firebaseUser = await FirebaseAuth.instance.currentUser;
+  if (firebaseUser != null) {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc((firebaseUser.uid))
+        .get()
+        .then((ds) {
+      name = ds.data()!['Name'] ?? [];
+    }).catchError((e) {
+      print(e);
+    });
+    return (name);
+  }
+}
+*/
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -13,6 +34,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final user = FirebaseAuth.instance.currentUser!;
+//  final CollectionReference _users =
+  //     FirebaseFirestore.instance.collection('users');
+
   var history;
   final box = Hive.box<Add_data>('data');
   final List<String> day = [
@@ -131,7 +156,7 @@ class _HomeState extends State<Home> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Good Day Bro,',
+                          '=Signed in As ' + user.email!,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 16,
